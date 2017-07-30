@@ -256,6 +256,15 @@ build_common: version
 build_photon: build_common
 	make -f $(MAKEFILEPATH_PHOTON)/Makefile build -e DEVFLAG=$(DEVFLAG)
 	
+build_photon_only_adminserver:
+	make -f $(MAKEFILEPATH_PHOTON)/Makefile_adminserver build -e DEVFLAG=$(DEVFLAG)
+
+build_photon_only_ui:
+	make -f $(MAKEFILEPATH_PHOTON)/Makefile_ui build -e DEVFLAG=$(DEVFLAG)
+
+build_photon_only_jobservice:
+	make -f $(MAKEFILEPATH_PHOTON)/Makefile_jobservice build -e DEVFLAG=$(DEVFLAG)
+
 build: build_$(BASEIMAGE)
 	
 modify_composefile: 

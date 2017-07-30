@@ -181,18 +181,33 @@ func RegistryURL() (string, error) {
 
 // InternalJobServiceURL returns jobservice URL for internal communication between Harbor containers
 func InternalJobServiceURL() string {
-	return "http://jobservice"
+	//return "http://jobservice"
+	jobServiceURL := os.Getenv("JOB_SERVICE_URL")
+	if len(jobServiceURL) == 0 {
+        	jobServiceURL = "http://jobservice"
+    	}
+	return jobServiceURL
 }
 
 // InternalTokenServiceEndpoint returns token service endpoint for internal communication between Harbor containers
 func InternalTokenServiceEndpoint() string {
-	return "http://ui/service/token"
+	//return "http://ui/service/token"
+	tokenURL := os.Getenv("TOKEN_URL")
+        if len(tokenURL) == 0 {
+                tokenURL = "http://ui/service/token"
+        }
+	return tokenURL
 }
 
 // InternalNotaryEndpoint returns notary server endpoint for internal communication between Harbor containers
 // This is currently a conventional value and can be unaccessible when Harbor is not deployed with Notary.
 func InternalNotaryEndpoint() string {
-	return "http://notary-server:4443"
+	//return "http://notary-server:4443"
+	notaryServerURL := os.Getenv("NOTARY_SERVER_URL")
+        if len(notaryServerURL) == 0 {
+                notaryServerURL = "http://notary-server:4443"
+        }
+	return notaryServerURL
 }
 
 // InitialAdminPassword returns the initial password for administrator

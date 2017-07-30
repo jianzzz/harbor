@@ -116,7 +116,12 @@ func MaxJobWorkers() (int, error) {
 
 // LocalUIURL returns the local ui url, job service will use this URL to call API hosted on ui process
 func LocalUIURL() string {
-	return "http://ui"
+	//return "http://ui"
+	uiURL := os.Getenv("UI_URL")
+        if len(uiURL) == 0 {
+                uiURL = "http://ui"
+        }
+	return uiURL;
 }
 
 // LocalRegURL returns the local registry url, job service will use this URL to pull image from the registry
@@ -165,5 +170,10 @@ func ExtEndpoint() (string, error) {
 
 // InternalTokenServiceEndpoint ...
 func InternalTokenServiceEndpoint() string {
-	return "http://ui/service/token"
+	//return "http://ui/service/token"
+	tokenURL := os.Getenv("TOKEN_URL")
+        if len(tokenURL) == 0 {
+                tokenURL = "http://ui/service/token"
+        }
+	return tokenURL
 }
